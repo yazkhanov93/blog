@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-f^$&6q^!!i7%ba+bph=34!wv%#8h6l$8b5qy-)5q6^+9o(j74&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'articles'
 ]
+
+CSRF_TRUSTED_ORIGINS=['http://216.250.9.142:81']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
