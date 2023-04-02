@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
+from rest_framework.pagination import PageNumberPagination
 from articles.models import Post
 from .serializers import *
 
@@ -13,8 +13,11 @@ class PostList(APIView):
             if request.query_params.get("title", None):
                 title = request.query_params.get("title",None)
                 posts = posts.filter(title__icontains=title)
-            serializer = PostsSerializer(posts, many=True)
-            return Response(serializer.data)
+            paginator = PageNumberPagination()
+            paginator.page_size = 10
+            result = paginator.paginate_queryset(posts, request)
+            serializer = PostsSerializer(result, many=True)
+            return paginator.get_paginated_response(serializer.data)
         except:
             return Response(status=status.HTTP_404_NOT_FOUND)
 

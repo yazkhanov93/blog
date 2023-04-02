@@ -43,6 +43,11 @@ INSTALLED_APPS = [
     'articles'
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+}
+
 CSRF_TRUSTED_ORIGINS=['http://216.250.9.142:81']
 
 MIDDLEWARE = [
